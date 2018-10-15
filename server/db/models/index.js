@@ -14,6 +14,12 @@ const Vet = require('./vet')
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+
+User.belongsToMany(Vet, {through: 'client-patient'})
+// User.getVet,
+// User.setVet,
+// User.createVet
+Vet.belongsToMany(User, {through: 'client-patient'})
 module.exports = {
   User,
   Vet

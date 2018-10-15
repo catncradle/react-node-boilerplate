@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const ADD_VET = 'ADD_VET'
 
 /**
  * INITIAL STATE
@@ -17,6 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const addVet = vet => ({type: ADD_VET})
 
 /**
  * THUNK CREATORS
@@ -56,6 +58,15 @@ export const logout = () => async dispatch => {
   }
 }
 
+export const matchVet = user => async dispatch => {
+  try {
+    const {data} = await axios.put('/api/vets', user)
+    dispatch(addVet(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */
@@ -63,6 +74,8 @@ export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user
+    case ADD_VET:
+      return {...state, vet: [...state.vet, action.vet]}
     case REMOVE_USER:
       return defaultUser
     default:
