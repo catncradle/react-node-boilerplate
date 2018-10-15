@@ -1,13 +1,14 @@
 import axios from 'axios'
-import history from '../history'
+// import history from '../history'
 
 //actions
 const GET_VETS = 'GET_VETS'
 
 //actionCreators
-const getVets = vet => ({type: GET_VETS, vets})
+const getVets = vets => ({type: GET_VETS, vets})
 //reducer
 
+const initialState = []
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_VETS:
