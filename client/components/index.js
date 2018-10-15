@@ -6,4 +6,5 @@
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {default as Browse} from './browseVets'
+export {default as Vet} from './Vet'
 export {Login, Signup} from './auth-form'
