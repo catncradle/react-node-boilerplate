@@ -1,19 +1,26 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Vet} = require('../server/db/models')
+const mockUsers = require('./USER_DATA.json')
+const mockVets = require('./VET_DATA.json')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
-  ])
-
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
+  const users = []
+  for (let i = 0; i < mockUsers.length; i++) {
+    users.push(User.create(mockUsers[i]))
+  }
+  await Promise.all(users)
+  const vets = []
+  for (let i = 0; i < mockVets.length; i++) {
+    vets.push(Vet.create(mockVets[i]))
+  }
+  await Promise.all(users)
+  // console.log(`seeded ${users.length} users`)
+  // console.log(`seeded successfully`)
 }
 
 // We've separated the `seed` function from the `runSeed` function.
