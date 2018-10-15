@@ -58,9 +58,9 @@ export const logout = () => async dispatch => {
   }
 }
 
-export const matchVet = user => async dispatch => {
+export const matchVet = vet => async dispatch => {
   try {
-    const {data} = await axios.put('/api/vets', user)
+    const {data} = await axios.put('/api/vets', vet)
     dispatch(addVet(data))
   } catch (err) {
     console.error(err)

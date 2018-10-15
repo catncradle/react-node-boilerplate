@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {addVet} from '../store'
 
 class Vet extends Component {
   render() {
@@ -19,6 +20,7 @@ class Vet extends Component {
             officiis sapiente qui accusantium, molestiae debitis dolores quaerat
             itaque iste. Maiores!
           </span>
+          <span>$$$$</span>
         </div>
         <div>
           <a className="waves-effect waves-light btn">connect with Vet!</a>
@@ -34,12 +36,12 @@ const mapState = state => {
   return state
 }
 
-// const mapDispatch = dispatch => {
-//   return {
-//     handleClick() {
-//       dispatch(())
-//     },
-//   }
-// }
+const mapDispatch = dispatch => {
+  return {
+    handleClick() {
+      dispatch(addVet)
+    }
+  }
+}
 
-export default connect(mapState)(Vet)
+export default connect(mapState, mapDispatch)(Vet)
